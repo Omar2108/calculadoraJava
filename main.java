@@ -287,8 +287,8 @@ public class main {
                 System.out.println("Opción incorrecta");
                 System.in.read();            
             }
-        }
+        }//fin del switch
         return 0;
-    }//fin del switch
+    }//fin del metodo 
     
-}//fin del metodo
+}//fin de la clase 
