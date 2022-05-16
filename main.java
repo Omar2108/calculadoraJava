@@ -40,7 +40,7 @@ public class main {
                //ejecuto un ciclo para seguir realizando operaciones con el resultado de la operacion anterior
               boolean control2 = true;
                do{
-                  double resultado2;
+                  double resultado2 = 0;
                   int opcion3;
                   int num2;
                   double resultado1;
@@ -94,11 +94,9 @@ public class main {
                         //capturo el numero
                         num2 = capturarInt();
 
-                        resultado2 = resultado1 * num2;
-                      
-                      resultado2 = resultado1 * num2;
-                      
-                      if(resultado2 == 0){
+                        
+                      //se verifica la division por cero
+                      if(num2 == 0){
                         //si num2 es igual a 0 no se ejecuta la operacion y se muestra en pantalla un mensaje indicadole el error
                         System.out.println("La division por 0 no se puede realizar");
 
@@ -116,15 +114,46 @@ public class main {
 
                     }else {
                         //ejecuto la operacion
-                        resultado = resultado1 / num2;
+                        resultado2 = resultado1 / num2;
                         //imprimo en pantalla el resultado de la operacion
                         System.out.println("El resultado de la division de la operacion "+resultado1+"/"+num2+" es: "+resultado2);
                     }//fin del if else 
                       
-                  }else{
+                 }else if(opcion3==5){
+                      //solicito el numero al usuario
+                        mensaje();
+
+                        //capturo el numero
+                        num2 = capturarInt();
+
+                        
+                      //se verifica la division por cero
+                      if(num2 == 0){
+                        //si num2 es igual a 0 no se ejecuta la operacion y se muestra en pantalla un mensaje indicadole el error
+                        System.out.println("La division por 0 no se puede realizar");
+
+                        //nueva se le solicita un nuevo numero
+                        System.out.println("Ingrese nuevamente el numero que sea diferente a 0");
+
+                        //capturo el segundo numero
+                        num2 = capturarInt();
+
+                        //ejecuto la operacion
+                        resultado2 = resultado1 % num2;
+
+                        //imprimo en pantalla el resultado de la operacion
+                        System.out.println("El resultado del modulo de la division "+resultado1+" / "+num2+" es: "+resultado2);
+
+                    }else {
+                        //ejecuto la operacion
+                        resultado2 = resultado1 % num2;
+                        //imprimo en pantalla el resultado de la operacion
+                        System.out.println("El resultado del modulo de la division "+resultado1+" MOD "+num2+" es: "+resultado2);
+                    }//fin del if else
+                 } else{
                    
                     control2 = false;
-                  }//fin del if else 
+                }//fin del if else 
                               
                }while(control2 == true);//fin del ciclo do while
                
@@ -144,6 +173,7 @@ public class main {
         System.out.println("2.Resta.");
         System.out.println("3.Multiplicacion.");
         System.out.println("4.Division.");
+        System.out.println("5.Modulo de la Division.");
         System.out.println("0.Salir.");
     }//fin del metodo
     
@@ -273,10 +303,47 @@ public class main {
                     resultado = num1 / num2;
                     //imprimo en pantalla el resultado de la operacion
                     System.out.println("El resultado de la division de la operacion "+num1+" / "+num2+" es: "+resultado);
-                }//fin del condicional if else 
+                }//fin del condicional if else    
+            }
+            
+            case 5 -> {
+                //muestro en pantalla un mensaje solicitado los numeros para realiazar la opereacion al usuario
+                mensaje(); 
                 
+                //capturo el primer numero
+                num1 = capturarInt();
+                
+                //muestro en pantalla un mensaje solicitado los numeros para realiazar la opereacion al usuario
+                mensaje(); 
+                
+                //capturo el segundo numero
+                num2 = capturarInt();
+                
+                if(num2 == 0){
+                    //si num2 es igual a 0 no se ejecuta la operacion y se muestra en pantalla un mensaje indicadole el error
+                    System.out.println("La division por 0 no se puede realizar");
+                    
+                    //nueva se le solicita un nuevo numero
+                    System.out.println("Ingrese nuevamente el numero que sea diferente a 0");
+                    
+                    //capturo el segundo numero
+                    num2 = capturarInt();
+                     
+                    //ejecuto la operacion
+                    resultado = num1 % num2;
+                    
+                    //imprimo en pantalla el resultado de la operacion
+                    System.out.println("El resultado del modulo de la division "+num1+" / "+num2+" es: "+resultado);
+                    
+                }else {
+                    //ejecuto la operacion
+                    resultado = num1 % num2;
+                    //imprimo en pantalla el resultado de la operacion
+                    System.out.println("El resultado del modulo de la division "+num1+" MOD "+num2+" es: "+resultado);
+                }//fin del condicional if else  
                 
             }
+            
             case 0 -> {
                 
                 boolean control;
