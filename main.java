@@ -6,356 +6,262 @@ import java.util.Scanner;
 
 
 public class main {
+
+    private static void swicht(String signo2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
-    private int num1;
-    private int num2;
+    private double num1;
+    private double num2;
     public static double resultado;
-    private int opcion;
+    private double opcion;
     private boolean control;
+   
     
     public static void main(String[] args) throws IOException{
         
         //inicializo la variable que va control el ciclo do while
         boolean control = true;
+        boolean control2 = true;
+        double resultado = 0;
         
         //se emplea el ciclo do while para ejecutar la apliacion
         do{
-           //muestro el menu de opciones al usuario
-           menu(); 
-           
-           //capturo la opcion del menu
-           int opcion = opcionMenu();
-           
-           //evaluo y ejecuto la opcion elegida por el usuario 
-           evalurOpcion(opcion);
-           
-           //muestro un mensaje indicandole al usuario si quiere continuar realizando operaciones 
-           mensaje2();
-           
-           
-           //capturo la opcion elegida por el usuario
-           int opcion2 = capturarInt();
-           
-           if(opcion2 == 1){
-               //ejecuto un ciclo para seguir realizando operaciones con el resultado de la operacion anterior
-              boolean control2 = true;
-               do{
-                  double resultado2 = 0;
-                  int opcion3;
-                  int num2;
-                  double resultado1;
-                  resultado1 = resultado;
-                  
-                  //muestro el menu
-                  menu();
-                  
-                  //capturo la opcion
-                  opcion3 = capturarInt();
-                  
-                  //ejecuto la operacion
-                  if(opcion3 == 1){
-                    //solicito el numero al usuario
+            //mensaje de inicio
+            mensaje2();
+
+            //solicito el primer numero
+            mensaje();
+
+            //solicito el primer numero
+            double num1 = capturarNumero();
+
+            //solicito la operacion a realizar
+            menu();
+
+            String signo = capturarSigno();
+
+            //evaluo la operacion a realizar
+
+            if(signo.equals("+")){
+              //solicito y capturo el segundo numero
+              mensaje();
+
+              double num2 = capturarNumero();
+
+              //inicializo la clase suma
+              Suma suma = new Suma();
+              resultado = suma.Suma(num1, num2);
+
+            }else if(signo.equals("-")){
+              //solicito y capturo el segundo numero
+              mensaje();
+
+              double num2 = capturarNumero();
+
+              //inicializo la clase Resta
+              Resta resta = new Resta();
+
+              resultado = resta.Resta(num1, num2); 
+
+            }else if(signo.equals("*")){
+              //solicito y capturo el segundo numero
+              mensaje();
+
+              double num2 = capturarNumero();
+              //inicializo la clase multiplicar
+              Multiplicar multiplicar = new Multiplicar();
+
+              resultado = multiplicar.Multiplicar(num1, num2);   
+            }else if(signo.equals("/")){
+              //solicito y capturo el segundo numero
+              mensaje();
+              double num2 = capturarNumero();
+              if(num2 == 0){
+                  System.out.println("La division por 0 no se puede, ingrese un nuevo numero de nuevo");
+                  //solicito y capturo el segundo numero
+                  mensaje();
+
+                  double num3 = capturarNumero();
+                  //inicializo la clase division
+                  Division divivir = new Division();
+
+                  resultado = divivir.Division(num1, num2); 
+              }else{
+                  //inicializo la clase division
+                  Division divivir = new Division();
+
+                  resultado = divivir.Division(num1, num2); 
+              }
+
+            }else if(signo.equals("%")){
+              //solicito y capturo el segundo numero
+              mensaje();
+              double num2 = capturarNumero();
+              if(num2 == 0){
+                  System.out.println("La division por 0 no se puede, ingrese un nuevo numero de nuevo");
+                  //solicito y capturo el segundo numero
+                  mensaje();
+
+                  double num3 = capturarNumero();
+                  //inicializo la clase modulo
+                    Modulo modulo = new Modulo();
+
+                   resultado = modulo.Modulo(num1, num3); 
+              }else{
+                  //inicializo la clase modulo
+                    Modulo modulo = new Modulo();
+
+                    resultado = modulo.Modulo(num1, num2); 
+              }
+
+            }else if(signo.equals("=")){
+                control = false;
+            }else{
+                System.out.println("Opcion incorrecta, intente nuevamente");
+            }
+            
+            //imprimo el resultado de la operacion
+            System.out.println("El resultado de la operacion es: " + resultado);
+          
+            while(control2 == true){
+              //muestro nuevament el menu
+              menu();
+              String signo2 = capturarSigno();
+             switch(signo2){
+                case "+" -> {
+                    //solicito y capturo el segundo numero
                     mensaje();
-                    
-                    //capturo el numero
-                    num2 = capturarInt();
-                    
-                    resultado2 = resultado1 + num2;
-                    
-                    //imprimo en pantalla el resultado de la operacion
-                    System.out.println("El resultado de la suma de la operacion "+resultado1+" + "+num2+" es: "+resultado2);
-                      
-                  }else if(opcion3 == 2){
-                      //solicito el numero al usuario
+            
+                    double num2 = capturarNumero();
+            
+                    //inicializo la clase suma
+                    Suma suma = new Suma();
+                    resultado = suma.Suma(resultado, num2);
+                    control2 = true;
+                }
+                case "-" -> {
+                    //solicito y capturo el segundo numero
                     mensaje();
-                    
-                    //capturo el numero
-                    num2 = capturarInt();
-                    
-                    resultado2 = resultado1 - num2;
-                    
-                    //imprimo en pantalla el resultado de la operacion
-                    System.out.println("El resultado de la resta de la operacion "+resultado1+" - "+num2+" es: "+resultado2);
-                  }else if(opcion3 == 3){
-                      //solicito el numero al usuario
+            
+                    double num2 = capturarNumero();
+
+                    //inicializo la clase Resta
+                    Resta resta = new Resta();
+
+                    resultado = resta.Resta(resultado, num2); 
+                    control2 = true;
+                }
+                case "*" -> {
+                    //solicito y capturo el segundo numero
                     mensaje();
-                    
-                    //capturo el numero
-                    num2 = capturarInt();
-                    
-                    resultado2 = resultado1 * num2;
-                    
-                    //imprimo en pantalla el resultado de la operacion
-                    System.out.println("El resultado de la multiplicacion de la operacion "+resultado+" x "+num2+" es: "+resultado2);
-                  }else if(opcion3 == 4){
-                      //solicito el numero al usuario
+
+                    double num2 = capturarNumero();
+                    //inicializo la clase multiplicar
+                    Multiplicar multiplicar = new Multiplicar();
+
+                    resultado = multiplicar.Multiplicar(resultado, num2); 
+                    control2 = true;
+                }
+                case "/" -> {
+                    //solicito y capturo el segundo numero
+                    mensaje();
+                    double num2 = capturarNumero();
+                    if(num2 == 0){
+                        System.out.println("La division por 0 no se puede, ingrese un nuevo numero de nuevo");
+                        //solicito y capturo el segundo numero
                         mensaje();
 
-                        //capturo el numero
-                        num2 = capturarInt();
+                        double num3 = capturarNumero();
+                        //inicializo la clase division
+                        Division divivir = new Division();
 
-                        
-                      //se verifica la division por cero
-                      if(num2 == 0){
-                        //si num2 es igual a 0 no se ejecuta la operacion y se muestra en pantalla un mensaje indicadole el error
-                        System.out.println("La division por 0 no se puede realizar");
+                        resultado = divivir.Division(resultado, num2); 
+                        control2=true;
+                    }else{
+                        //inicializo la clase division
+                        Division divivir = new Division();
 
-                        //nueva se le solicita un nuevo numero
-                        System.out.println("Ingrese nuevamente el numero que sea diferente a 0");
-
-                        //capturo el segundo numero
-                        num2 = capturarInt();
-
-                        //ejecuto la operacion
-                        resultado2 = resultado1 / num2;
-
-                        //imprimo en pantalla el resultado de la operacion
-                        System.out.println("El resultado de la division de la operacion "+resultado1+" / "+num2+" es: "+resultado2);
-
-                    }else {
-                        //ejecuto la operacion
-                        resultado2 = resultado1 / num2;
-                        //imprimo en pantalla el resultado de la operacion
-                        System.out.println("El resultado de la division de la operacion "+resultado1+"/"+num2+" es: "+resultado2);
-                    }//fin del if else 
-                      
-                 }else if(opcion3==5){
-                      //solicito el numero al usuario
+                        resultado = divivir.Division(resultado, num2); 
+                    } 
+                    control2 = true;
+                }
+                case "%" -> {
+                    //solicito y capturo el segundo numero
+                    mensaje();
+                    double num2 = capturarNumero();
+                    if(num2 == 0){
+                        System.out.println("La division por 0 no se puede, ingrese un nuevo numero de nuevo");
+                        //solicito y capturo el segundo numero
                         mensaje();
 
-                        //capturo el numero
-                        num2 = capturarInt();
+                        double num3 = capturarNumero();
+                        //inicializo la clase modulo
+                        Modulo modulo = new Modulo();
 
-                        
-                      //se verifica la division por cero
-                      if(num2 == 0){
-                        //si num2 es igual a 0 no se ejecuta la operacion y se muestra en pantalla un mensaje indicadole el error
-                        System.out.println("La division por 0 no se puede realizar");
+                        resultado = modulo.Modulo(resultado, num3); 
+                    }else{
+                        //inicializo la clase modulo
+                        Modulo modulo = new Modulo();
 
-                        //nueva se le solicita un nuevo numero
-                        System.out.println("Ingrese nuevamente el numero que sea diferente a 0");
-
-                        //capturo el segundo numero
-                        num2 = capturarInt();
-
-                        //ejecuto la operacion
-                        resultado2 = resultado1 % num2;
-
-                        //imprimo en pantalla el resultado de la operacion
-                        System.out.println("El resultado del modulo de la division "+resultado1+" / "+num2+" es: "+resultado2);
-
-                    }else {
-                        //ejecuto la operacion
-                        resultado2 = resultado1 % num2;
-                        //imprimo en pantalla el resultado de la operacion
-                        System.out.println("El resultado del modulo de la division "+resultado1+" MOD "+num2+" es: "+resultado2);
-                    }//fin del if else
-                 } else{
-                   
+                        resultado = modulo.Modulo(resultado, num2); 
+                    } 
+                    control2 = true;
+                }
+                case "=" -> {
+                    
                     control2 = false;
-                }//fin del if else 
-                              
-               }while(control2 == true);//fin del ciclo do while
-               
-           }else{
-               control = false;
-           }//fin del if else
+                }
+                default -> {
+                    System.out.println("Ingreso un opcion invalida, intente de nuevo");
+                }
+            }//fin de switch
+             
+            //imprimo el resultado de la operacion
+            System.out.println("El resultado de la operacion es: " + resultado);
+          }  
+            
+           
            
             
         }while(control == true);//fin del ciclo do while
            
     }//fin del metodo principal
     
-    //metodo para mostrar un menue de opciones al usuario
+    //metodo para mostrar un menu de operaciones
     private static void menu(){
-        System.out.println("Eliga la operacion que desea realizar");
-        System.out.println("1.Suma.");
-        System.out.println("2.Resta.");
-        System.out.println("3.Multiplicacion.");
-        System.out.println("4.Division.");
-        System.out.println("5.Modulo de la Division.");
-        System.out.println("0.Salir.");
+        System.out.println("Escriba el signo de la operacion que desea realizar");
+        System.out.println("1.Suma(+).");
+        System.out.println("2.Resta(-).");
+        System.out.println("3.Multiplicacion(*).");
+        System.out.println("4.Division(/).");
+        System.out.println("5.Modulo de la Division(%).");
+        System.out.println("Salir(=).");
     }//fin del metodo
     
     //metodo para capturar la opcion elegida por el usuario
-    private static int opcionMenu(){
+    private static String capturarSigno(){
         Scanner input = new Scanner(System.in);
-        return input.nextInt();
+        return input.nextLine();
     }//fin del metodo
     
-    //metodo para capturar el numero ingresado por el usuario
-    private static int capturarInt(){
-        Scanner input = new Scanner(System.in);
-        return input.nextInt();
-    }//fin del metodo
+    
+    //metodo para mostrar mensaje inicial al sistema
+    private static void mensaje2(){
+        System.out.println("Bienvenido, si desea realizar alguno operacion, por favor ingrese un numero, de lo contrario ingrese = para salir");
+    }
+   
     
     //metodo para solicitar al usuario los numeros para realizar la operacion
     private static void mensaje(){
         System.out.println("Ingrese por favor un numero");
     }//fin del metodo
     
-    //metodo para solicitar al usuario continuar realizando la operaciones
-    private static void mensaje2(){
-        System.out.println("Si desea continuar ingrese 1 de lo contrario 0, si ingreso 1 por favor Ingrese otro un numero y selecione la operacion que desea realizar, de lo contrario ¡Hasta pronto!");
-    }//fin del metodo
-     
-    //metodo para evaluar opciones 
-    public static int evalurOpcion(int opcion) throws IOException{
-        
-        //declaro la variables a utilizar
-        int num1;
-        int num2;
-        
-        //evaluo la opcion elegida por el usuario y se ejecuta la operacion elegida      
-        switch(opcion){
-            case 1 -> {                
-                //muestro en pantalla un mensaje solicitado los numeros para realiazar la opereacion al usuario
-                mensaje(); 
-                
-                //capturo el primer numero
-                num1 = capturarInt();
-                
-                //muestro en pantalla un mensaje solicitado los numeros para realiazar la opereacion al usuario
-                mensaje(); 
-                
-                //capturo el segundo numero
-                num2 = capturarInt();
-                
-                //ejecuto la operacion
-                resultado = num1 + num2;
-                
-                //imprimo en pantalla el resultado de la operacion
-                System.out.println("El resultado de la suma de la operacion "+num1+" + "+num2+" es: "+resultado);
-                
-                
-            }
-            case 2 -> {
-                //muestro en pantalla un mensaje solicitado los numeros para realiazar la opereacion al usuario
-                mensaje(); 
-                
-                //capturo el primer numero
-                num1 = capturarInt();
-                
-                //muestro en pantalla un mensaje solicitado los numeros para realiazar la opereacion al usuario
-                mensaje(); 
-                
-                //capturo el segundo numero
-                num2 = capturarInt();
-                
-                //ejecuto la operacion
-                resultado = num1 - num2;
-                
-                //imprimo en pantalla el resultado de la operacion
-                System.out.println("El resultado de la resta de la operacion "+num1+" - "+num2+" es: "+resultado);
-                
-            }
-            case 3 -> {
-                //muestro en pantalla un mensaje solicitado los numeros para realiazar la opereacion al usuario
-                mensaje(); 
-                
-                //capturo el primer numero
-                num1 = capturarInt();
-                
-                //muestro en pantalla un mensaje solicitado los numeros para realiazar la opereacion al usuario
-                mensaje(); 
-                
-                //capturo el segundo numero
-                num2 = capturarInt();
-                
-                //ejecuto la operacion
-                resultado = num1 * num2;
-                
-                //imprimo en pantalla el resultado de la operacion
-                System.out.println("El resultado de la multiplicacion de la operacion "+num1+" x "+num2+" es: "+resultado);
-                
-            }
-            case 4 -> {
-                //muestro en pantalla un mensaje solicitado los numeros para realiazar la opereacion al usuario
-                mensaje(); 
-                
-                //capturo el primer numero
-                num1 = capturarInt();
-                
-                //muestro en pantalla un mensaje solicitado los numeros para realiazar la opereacion al usuario
-                mensaje(); 
-                
-                //capturo el segundo numero
-                num2 = capturarInt();
-                
-                if(num2 == 0){
-                    //si num2 es igual a 0 no se ejecuta la operacion y se muestra en pantalla un mensaje indicadole el error
-                    System.out.println("La division por 0 no se puede realizar");
-                    
-                    //nueva se le solicita un nuevo numero
-                    System.out.println("Ingrese nuevamente el numero que sea diferente a 0");
-                    
-                    //capturo el segundo numero
-                    num2 = capturarInt();
-                     
-                    //ejecuto la operacion
-                    resultado = num1 / num2;
-                    
-                    //imprimo en pantalla el resultado de la operacion
-                    System.out.println("El resultado de la division de la operacion "+num1+" / "+num2+" es: "+resultado);
-                    
-                }else {
-                    //ejecuto la operacion
-                    resultado = num1 / num2;
-                    //imprimo en pantalla el resultado de la operacion
-                    System.out.println("El resultado de la division de la operacion "+num1+" / "+num2+" es: "+resultado);
-                }//fin del condicional if else    
-            }
-            
-            case 5 -> {
-                //muestro en pantalla un mensaje solicitado los numeros para realiazar la opereacion al usuario
-                mensaje(); 
-                
-                //capturo el primer numero
-                num1 = capturarInt();
-                
-                //muestro en pantalla un mensaje solicitado los numeros para realiazar la opereacion al usuario
-                mensaje(); 
-                
-                //capturo el segundo numero
-                num2 = capturarInt();
-                
-                if(num2 == 0){
-                    //si num2 es igual a 0 no se ejecuta la operacion y se muestra en pantalla un mensaje indicadole el error
-                    System.out.println("La division por 0 no se puede realizar");
-                    
-                    //nueva se le solicita un nuevo numero
-                    System.out.println("Ingrese nuevamente el numero que sea diferente a 0");
-                    
-                    //capturo el segundo numero
-                    num2 = capturarInt();
-                     
-                    //ejecuto la operacion
-                    resultado = num1 % num2;
-                    
-                    //imprimo en pantalla el resultado de la operacion
-                    System.out.println("El resultado del modulo de la division "+num1+" / "+num2+" es: "+resultado);
-                    
-                }else {
-                    //ejecuto la operacion
-                    resultado = num1 % num2;
-                    //imprimo en pantalla el resultado de la operacion
-                    System.out.println("El resultado del modulo de la division "+num1+" MOD "+num2+" es: "+resultado);
-                }//fin del condicional if else  
-                
-            }
-            
-            case 0 -> {
-                
-                boolean control;
-                control = false;
-                
-            }
-            default -> {
-                System.out.println("Opción incorrecta");
-                System.in.read();            
-            }
-        }//fin del switch
-        return 0;
+    //metodo para capturar la opcion elegida por el usuario
+    private static double capturarNumero(){
+        Scanner input = new Scanner(System.in);
+        return input.nextDouble();
     }//fin del metodo 
+   
     
 }//fin de la clase 
